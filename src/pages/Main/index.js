@@ -30,8 +30,6 @@ export default class Main extends Component {
     }).isRequired,
   };
 
-  statis;
-
   state = {
     newUser: '',
     users: [],
@@ -98,9 +96,7 @@ export default class Main extends Component {
             returnKeyType="send"
             onSubmitEditing={this.handleAddUser}
           />
-          <SubmitButton
-            loading={loading}
-            onPress={() => this.handleAddUser(item)}>
+          <SubmitButton loading={loading} onPress={this.handleAddUser}>
             {loading ? (
               <ActivityIndicator color="#FFF" />
             ) : (
@@ -118,7 +114,7 @@ export default class Main extends Component {
               <Name>{item.name}</Name>
               <Bio>{item.bio}</Bio>
 
-              <ProfileButton onPress={this.handleNavigate}>
+              <ProfileButton onPress={() => this.handleNavigate(item)}>
                 <ProfileButtonText>Ver perfil</ProfileButtonText>
               </ProfileButton>
             </User>
